@@ -60,7 +60,7 @@ $results = $article->get();
                                 <td><?= $result['title']; ?></td>
                                 <td><?= $result['author']; ?></td>
                                 <td><?php if (strlen($result['content']) > 35)
-                                    echo  substr($result['content'], 0, 30) . '...';  ?></td>
+                                    echo  substr(urldecode($result['content']), 0, 30) . '...';  ?></td>
                                 <td><?= $result['date']; ?></td>
                                 <td>
                                     <a  href="./edite.php?id=<?= $result['id']; ?>"  class="btn btn-primary">Update</a>

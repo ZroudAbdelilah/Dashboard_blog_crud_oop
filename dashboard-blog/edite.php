@@ -33,11 +33,15 @@ $oldarticle = $article->find($id);
 <body class="pt-5">
     <div id="update-modal">
         <div class="update-modal container mt-5">
-          <form class="col "  action="./update-article.php" methode="post" id="edit">
+          <form class="col"  action="./update-article.php" method="post" id="edit">
+          <?php
+          if(isset($_GET['id'])){?>
+            <input type="hidden" name="id" value="<?= $_GET['id'];?>">
+          <?php }
+          ?>
           <div class="form-group">
                 <h2>Edite Article:</h2>
           </div>
-          <input type="hidden" id="edit-id" name="id">
           <div class="form-group">
             <input id="edit-title" placeholder="Title" name="title" type="text" value="<?=$oldarticle['title']
 ?>" class="form-control">
@@ -48,8 +52,7 @@ $oldarticle = $article->find($id);
 ?>" class="form-control">
           </div>
           <div class="form-group">
-            <textarea id="edit-content" placeholder="Content" name="content" type="text" style="min-height:300px;" class="form-control"><?=$oldarticle['content']
-?>" </textarea>
+            <textarea id="edit-content" placeholder="Content" name="content" type="text" style="min-height:300px;" class="form-control"><?=urldecode($oldarticle['content'])?>" </textarea>
 
           </div>
           <div class="form-group">

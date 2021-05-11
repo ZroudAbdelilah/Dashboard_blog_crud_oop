@@ -17,7 +17,7 @@ if(isset($_POST)){
     if($results){
         header('Location: ./index.php');
     }else{
-        echo 0;
+        echo 10;
     }
 
 }else{

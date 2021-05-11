@@ -3,7 +3,7 @@ require "./articles.php";
 if(isset($_POST)){
     $title = $_POST['title'];
     $author = $_POST['author'];
-    $content = $_POST['content'];
+    $content = urlencode($_POST['content']);
     $date = $_POST['date'];
     if(empty($title) || empty($author) || empty($content)|| empty($date)){
         echo "10";

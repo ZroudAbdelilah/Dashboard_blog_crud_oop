@@ -20,11 +20,13 @@ class Articles extends Connect {
     }
 
     public function update($id,$title,$author,$content,$date){
-        $sql = "UPDATE `articles` SET title='$title',author='$author',content='$content',date='$date' WHERE id =$id";
+        $content = urlencode($content);
+        $sql = "UPDATE `articles` SET title='$title',author='$author',content='$content',date='$date' WHERE id = $id ";
         $result = mysqli_query($this->conn,$sql);
         if ($result){
             return true;
         }else{
+            echo mysqli_error($this->conn);
             return false;
         }
 
