@@ -1,21 +1,22 @@
 <?php
-class Connect{
+class DB{
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
     private $dbname = "blog";
     protected $conn ;
     public function __construct(){
-      
-      // Create connection
-      $this->conn = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
-      // Check connection
-      if (!$this->conn) {
-        die("Connection failed: " . mysqli_connect_error());
+
+      try {
+        $this->conn = new PDO("mysql:host=$this->servername;dbname=".$this->dbname, $this->username, $this->password);
+        // set the PDO error mode to exception
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      } catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
       }
     }
     public function __destruct(){
-      mysqli_close($this->conn);
+      $this->conn = null;
     }
   }
 ?>

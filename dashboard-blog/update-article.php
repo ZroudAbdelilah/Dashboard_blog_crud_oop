@@ -1,4 +1,5 @@
 <?php
+require "./database.php";
 require "./articles.php";
 if(isset($_POST)){
     $id = $_POST['id'];

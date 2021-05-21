@@ -1,4 +1,5 @@
 <?php
+require "./database.php";
 require "./articles.php";
 if(isset($_POST)){
     $title = $_POST['title'];
@@ -11,13 +12,13 @@ if(isset($_POST)){
     }
     $article = new Articles();
     $results = $article->creat($title,$author,$content,$date);
-    $data = array(
-        "id" => $results,
-        "title" => $title,
-        "author" => $author,
-        "content" => $content,
-        "date" => $date
-    );
+    // $data = array(
+    //     "id" => $results,
+    //     "title" => $title,
+    //     "author" => $author,
+    //     "content" => $content,
+    //     "date" => $date
+    // );
     // echo json_encode($data);
     header('Location: ./index.php ');
 }else{

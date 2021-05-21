@@ -1,40 +1,48 @@
 <?php
-require "./database.php";
 
-class Articles extends Connect {
+
+class Articles extends DB {
 
     public function get(){
-        $sql ="SELECT * FROM `articles` ORDER BY id DESC";
-        $result = mysqli_query($this->conn,$sql);
-        $data = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            array_push($data,$row);
+        $sql = $this->conn->prepare("SELECT * FROM `articles` ORDER BY id DESC");
+        if($sql->execute()){
+            $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }else{
+            return false;
         }
-        return $data;
     }
 
     public function find($id){
-        $sql = "SELECT * FROM `articles` WHERE id =$id";
-        $result = mysqli_query($this->conn,$sql);
-        return mysqli_fetch_assoc($result);
+        $sql = $this->conn->prepare("SELECT * FROM `articles` WHERE id=:id");
+        $sql->bindParam(':id',$id,PDO::PARAM_INT);
+        if($sql->execute()){
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }else{
+            return false;
+        }
     }
 
     public function update($id,$title,$author,$content,$date){
         $content = urlencode($content);
-        $sql = "UPDATE `articles` SET title='$title',author='$author',content='$content',date='$date' WHERE id = $id ";
-        $result = mysqli_query($this->conn,$sql);
-        if ($result){
+        $sql = $this->conn->prepare("UPDATE `articles` SET title=:title,author=:author,content=:content,date=:date WHERE id =:id ");
+        $sql->bindParam(':title',$title,PDO::PARAM_STR);
+        $sql->bindParam(':author',$author,PDO::PARAM_STR);
+        $sql->bindParam(':content',$content,PDO::PARAM_STR);
+        $sql->bindParam(':date',$date,PDO::PARAM_STR);
+        $sql->bindParam(':id',$id,PDO::PARAM_INT);
+        if($sql->execute()){
             return true;
         }else{
-            echo mysqli_error($this->conn);
             return false;
         }
 
     }
     public function delete($id){
-        $sql = "DELETE FROM `articles` WHERE id =$id";
-        $result = mysqli_query($this->conn,$sql);
-        if ($result){
+        $sql = $this->conn->prepare("DELETE FROM `articles` WHERE id =:id");
+        $sql->bindParam(':id',$id,PDO::PARAM_INT);
+        if($sql->execute()){
             return true;
         }else{
             return false;
@@ -42,14 +50,17 @@ class Articles extends Connect {
     }
 
     public function creat($title,$author,$content,$date){
-        $sql = "INSERT INTO `articles` (`title`,`author`,`content`,`date`) VALUES ('$title','$author','$content','$date') ";
+        $sql = $this->conn->prepare("INSERT INTO `articles` (`title`,`author`,`content`,`date`) VALUES (:title,:author,:content,:date)");
 
-        $result = mysqli_query($this->conn,$sql);
-        if ($result){
-            return mysqli_insert_id($this->conn);
+        $sql->bindParam(':title',$title,PDO::PARAM_STR);
+        $sql->bindParam(':author',$author,PDO::PARAM_STR);
+        $sql->bindParam(':content',$content,PDO::PARAM_STR);
+        $sql->bindParam(':date',$date,PDO::PARAM_STR);
+        
+        if($sql->execute()){
+            return true;
         }else{
-            echo mysqli_error($this->conn);
-            return 0;
+            return false;
         }
     }
 }

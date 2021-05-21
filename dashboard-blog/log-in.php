@@ -1,3 +1,15 @@
+<?php
+	//start session
+	session_start();
+ 
+	//redirect if logged in
+	if(isset($_SESSION['user'])){
+		header('location:index.php');
+	}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,13 +42,14 @@
                                     <input type="checkbox" class="form-check d-inline" name="remember" id="remember">
                                     <label for="remember">Remember me</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg w-100">Log in</button>
+                                <button type="submit" name='login'class="btn btn-primary btn-lg w-100">Log in</button>
                             </form>
                         </div>
                         <div class="col-6">
                             <img src="./Converted.png" class="w-100 h-auto img-responsive" alt="">
                             
                         </div>
+                        
                         
                     </div>
         

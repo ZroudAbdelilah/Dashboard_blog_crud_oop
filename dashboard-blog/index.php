@@ -1,7 +1,21 @@
 <?php
+require('database.php');
 require "./articles.php";
 $article = new Articles();
 $results = $article->get();
+
+session_start();
+//return to login if not logged in
+if (!isset($_SESSION['user']) ||(trim ($_SESSION['user']) == '')){
+	header('location:log-in.php');
+}
+ 
+include_once('User.php');
+ 
+$user = new User();
+ 
+//fetch user data
+$row = $user->find($_SESSION['user']);
 
 ?>
 
