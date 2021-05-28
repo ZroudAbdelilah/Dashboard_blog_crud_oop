@@ -1,6 +1,9 @@
 $(document).ready(function() {
-    $('#example').DataTable();
-} );
+    $('.summernote').summernote({
+        height:350
+    });
+});
+    $('#example').DataTable( );
 //delete
 function  deleteUser(id){
     if(confirm("Are you sure!")){
@@ -19,32 +22,3 @@ function  deleteUser(id){
         })
     }
 }
-
-    // // add user
-    // $("#add").submit(function(e){
-    //     e.preventDefault();
-    //     let formData = $(this).serialize();
-    //     $.post({
-    //         url: './add-article.php',
-    //         data:formData,
-    //         success: function(res){
-    //             let data = JSON.parse(res);
-    //             $("tbody").prepend(`
-    //             <tr data-id="${data['id']}">
-    //                 <td>${data['title']}</td>
-    //                 <td>${data['author']}</td>
-    //                 <td>${data['content']}</td>
-    //                 <td>${data['date']}</td>
-    //                 <td>
-    //                     <button onclick="updateUser(${data['id']})" class="btn btn-primary">Update</button>
-    //                     <button onclick="deleteUser(${data['id']})" class="btn btn-danger">Delete</button>
-    //                 </td>
-    //             </tr>
-    //             `);
-    //             $("input").val('');
-    //         },
-    //         error:function(err){
-    //             console.error(err);
-    //         }
-    //     });
-    // };

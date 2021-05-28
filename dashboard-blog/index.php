@@ -50,7 +50,7 @@ $row = $user->find($_SESSION['user']);
             <h4>Articles</h4>
         </div>
         <div class="col-auto">
-            <a href="./add.html" class="btn btn-primary">Add Article</a>
+            <a href="./add.php" class="btn btn-primary">Add Article</a>
         </div>
     </div>
 </div>

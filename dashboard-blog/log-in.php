@@ -29,6 +29,13 @@
                     border-radius: 16px;">
                         <div class="col-6 align-self-center">
                             <h2 class="text-center">Log in</h2>
+                            <?php
+                            if(isset($_GET['message'])){?>
+                                <div class="alert alert-danger">
+                                    <?= $_GET['message']; ?>
+                                </div>
+                            <?php }
+                            ?>
                             <form action="./login.php" method="post" class=" ">
                                 <div class="form-group mb-2">
                                     <label for="email" class="d-block">Email:</label>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <title>add article</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -22,6 +24,22 @@
     </div>
     </header>
 <body class="pt-5">
+  <?php
+  if(isset($_GET['msg'])){
+    ?>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12">
+            <div class="alert alert-danger">
+              
+                <?= $_GET['msg']; ?>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  <?php  }
+  ?>
     <div id="update-modal">
         <div class="update-modal container mt-5">
           <form class="col " action="./add-article.php" method="post" id="edit">
@@ -37,7 +55,7 @@
             <input id="edit-author" placeholder="Author" name="author" type="text" class="form-control">
           </div>
           <div class="form-group">
-            <textarea id="edit-content" placeholder="Content" name="content" type="text" style="min-height:300px;" class="form-control"></textarea>
+            <textarea class="summernote" id="edit-content" placeholder="Content" name="content" type="text" style="min-height:300px;" class="form-control"></textarea>
 
           </div>
           <div class="form-group">
@@ -50,7 +68,9 @@
         </div>
       </div>   
 
-
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

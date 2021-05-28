@@ -16,6 +16,7 @@ $oldarticle = $article->find($id);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <title>Edite article</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -53,7 +54,7 @@ $oldarticle = $article->find($id);
 ?>" class="form-control">
           </div>
           <div class="form-group">
-            <textarea id="edit-content" placeholder="Content" name="content" type="text" style="min-height:300px;" class="form-control"><?=urldecode($oldarticle['content'])?>" </textarea>
+            <textarea class="summernote" id="edit-content" placeholder="Content" name="content" type="text" style="min-height:300px;" class="form-control"><?=urldecode($oldarticle['content'])?>" </textarea>
 
           </div>
           <div class="form-group">
@@ -66,8 +67,10 @@ $oldarticle = $article->find($id);
          </form>
         </div>
       </div>   
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-
-    <script src="./js/main.js"></script>
+      <script src="./js/main.js"></script>
 </body>
 </html>

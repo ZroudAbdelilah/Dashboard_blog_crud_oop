@@ -14,8 +14,7 @@ if(isset($_POST['login'])){
 	$auth = $user->check_login($email, $password);
  
 	if(!$auth){
-		$_SESSION['message'] = 'Invalid email or password';
-    	header('location:log-in.php');
+    	header('location:log-in.php?message=Invalid email or password');
 	}
 	else{
 		$_SESSION['user'] = $auth;
@@ -23,7 +22,6 @@ if(isset($_POST['login'])){
 	}
 }
 else{
-	$_SESSION['message'] = 'You need to login first';
-	header('location:log-in.php');
+	header('location:log-in.php?message=You need to login first');
 }
 ?>
